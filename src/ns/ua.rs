@@ -2,6 +2,7 @@ use log::error;
 use std::{env, process::exit};
 use crate::ns::format::canonicalize_name;
 
+#[derive(Clone)]
 pub struct UserAgent {
     program: &'static str,
     version: &'static str,
