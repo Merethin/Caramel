@@ -25,16 +25,16 @@ pub fn canonicalize_name(name: &str) -> String {
 }
 
 pub fn nation_link(nation: &str) -> String {
-    format!("https://www.nationstates.net/nation={}", nation)
+    format!("https://www.nationstates.net/nation={}", canonicalize_name(nation))
 }
 
 pub fn region_link(region: &str) -> String {
-    format!("https://www.nationstates.net/region={}", region)
+    format!("https://www.nationstates.net/region={}", canonicalize_name(region))
 }
 
 pub fn rmb_link(region: &str, postid: &str) -> String {
     format!(
         "https://www.nationstates.net/page=display_region_rmb/region={}?postid={}#p{}", 
-        region, postid, postid
+        canonicalize_name(region), postid, postid
     )
 }

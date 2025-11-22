@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use serde_repr::Deserialize_repr;
 
 #[derive(Deserialize)]
 pub struct WaMemberRoot {
@@ -9,11 +10,17 @@ pub struct WaMemberRoot {
 #[derive(Deserialize)]
 pub struct RmbRoot {
     #[serde(rename = "MESSAGES")]
-    pub messages: Vec<Post>,
+    pub messages: Messages,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Messages {
+    #[serde(rename = "POST")]
+    pub posts: Vec<Post>,
 }
 
 #[repr(u8)]
-#[derive(Deserialize)]
+#[derive(Deserialize_repr, Debug)]
 pub enum PostStatus {
     Regular = 0,
     Suppressed = 1,
@@ -21,7 +28,7 @@ pub enum PostStatus {
     ModDeleted = 9,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Post {
     #[serde(rename = "@id")]
     pub id: String,
